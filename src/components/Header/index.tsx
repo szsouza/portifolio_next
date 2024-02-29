@@ -1,10 +1,7 @@
 "use client";
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-} from "../ui/navigation-menu";
+
+import Link from "next/link";
+import { useRouter } from "next/router";
 const menus: { title: string; href: string; description: string }[] = [
   {
     title: "Home",
@@ -27,7 +24,10 @@ const menus: { title: string; href: string; description: string }[] = [
     description: "my projects",
   },
 ];
+
 export const Header = () => {
+  const router = useRouter;
+
   return (
     <header className="w-full h-16 gap-4 flex justify-between items-center bg-white flex-1">
       <div className="flex justify-center items-center relative mt-4">
@@ -37,14 +37,22 @@ export const Header = () => {
       </div>
       <div className="flex relative justify-center gap-5 mt-4">
         {menus.map((menu) => (
-          <a
+          <Link
             href={menu.href}
             className="relative inline-block text-black group"
             key={menu.title}
           >
-            <span className="block text-lg">{menu.title}</span>
+            <span
+              className={
+                router.pathname === menu.href
+                  ? "text-blue-500 font-bold"
+                  : "text-black"
+              }
+            >
+              {menu.title}
+            </span>
             <span className="absolute left-1/2 w-full h-0.5 bg-black bottom-0 origin-center transform -translate-x-1/2 transition-all duration-300 scale-x-0 group-hover:scale-x-100"></span>
-          </a>
+          </Link>
         ))}
       </div>
     </header>
