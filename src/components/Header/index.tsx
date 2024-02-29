@@ -23,7 +23,7 @@ const menus: { title: string; href: string; description: string }[] = [
   },
   {
     title: "Contact",
-    href: "#contact",
+    href: "Contact",
     description: "my projects",
   },
 ];
