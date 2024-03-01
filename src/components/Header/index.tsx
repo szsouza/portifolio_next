@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 const menus: { title: string; href: string; description: string }[] = [
   {
     title: "Home",
@@ -15,18 +15,18 @@ const menus: { title: string; href: string; description: string }[] = [
   },
   {
     title: "About",
-    href: "About",
+    href: "/About",
     description: "my projects",
   },
   {
     title: "Contact",
-    href: "Contact",
+    href: "/Contact",
     description: "my projects",
   },
 ];
 
 export const Header = () => {
-  const router = useRouter;
+  const pathaname = usePathname();
 
   return (
     <header className="w-full h-16 gap-4 flex justify-between items-center bg-white flex-1">
@@ -44,7 +44,7 @@ export const Header = () => {
           >
             <span
               className={
-                router.pathname === menu.href
+                pathaname === menu.href
                   ? "text-blue-500 font-bold"
                   : "text-black"
               }

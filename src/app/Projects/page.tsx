@@ -1,4 +1,5 @@
 import { Card } from "@/components/ui/card";
+import { env } from "process";
 import React from "react";
 interface GitHubProject {
   id: number;
@@ -23,7 +24,7 @@ async function Projects() {
     <div className="flex justify-center items-center w-full flex-wrap">
       <div className="flex flex-wrap justify-center items-center gap-4 m-auto">
         {projects.map((project) => (
-          <Card key={project.id} shadow="lg" className="w-64">
+          <Card key={project.id} className="w-64">
             <div className="p-4 flex flex-col items-center justify-between h-64">
               <h2 className="text-lg font-semibold mb-2">{project.name}</h2>
               <p className="text-gray-700">{project.description}</p>
