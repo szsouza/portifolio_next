@@ -45,7 +45,7 @@ export const Header = () => {
             <span
               className={
                 pathaname === menu.href
-                  ? "text-blue-500 font-bold"
+                  ? "text-slate-600 font-bold"
                   : "text-black"
               }
             >

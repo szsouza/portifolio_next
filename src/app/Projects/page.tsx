@@ -21,7 +21,6 @@ async function fetchGitHubProjects(): Promise<GitHubProject[]> {
   const httpLink = createHttpLink({
     uri: "https://api.github.com/graphql",
   });
-  console.log(env.GITHUB_ACCESS_TOKEN);
   const authLink = setContext((_, { headers }) => {
     const token = env.GITHUB_ACCESS_TOKEN;
     return {
