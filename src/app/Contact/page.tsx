@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { sendMessage } from "./sendMessage";
+import { toast } from "@/components/ui/use-toast";
 const formSchema = z.object({
   nome: z.string().min(2, {
     message: "Nome deve conter pelo menos 2 caracteres.",
@@ -40,6 +41,12 @@ export default function Contact() {
     //   return;
     // }
     await sendMessage(formData);
+    toast({
+      title: "Mensagem enviada",
+      description: `Você enviou uma mensagem deiaxando o email: ${formData.get(
+        "email"
+      )} como contato as ${new Date().toLocaleString("pt-BR")}`,
+    });
     form.reset();
   }
 
