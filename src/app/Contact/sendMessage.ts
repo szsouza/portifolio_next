@@ -10,7 +10,7 @@ async function sendMessage(formData: FormData) {
   try {
     const transporter = nodemailer.createTransport({
       host: process.env.MAIL_HOST,
-      port: 465,
+      port: process.env.MAIL_PORT,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASSWORD,
