@@ -9,7 +9,7 @@ async function sendMessage(formData: FormData) {
   };
   try {
     const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
+      host: process.env.MAIL_HOST,
       port: 465,
       auth: {
         user: process.env.EMAIL_USER,
