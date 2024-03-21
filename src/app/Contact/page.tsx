@@ -1,5 +1,5 @@
 "use client";
-import React, { FormEvent } from "react";
+import React, { FormEvent, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -27,6 +27,7 @@ const formSchema = z.object({
 
 export default function Contact() {
   // 1. Define your form.
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -37,16 +38,23 @@ export default function Contact() {
   });
 
   async function SendMessageIntermedi(formData: FormData) {
-    // if (form.formState.isValid == false) {
-    //   return;
-    // }
-    await sendMessage(formData);
-    toast({
-      title: "Mensagem enviada",
-      description: `Você enviou uma mensagem deiaxando o email: ${formData.get(
-        "email"
-      )} como contato as ${new Date().toLocaleString("pt-BR")}`,
-    });
+    const res = await sendMessage(formData);
+
+    if (res.success === true) {
+      toast({
+        title: res.msg,
+        description: `Você enviou uma mensagem deiaxando o email: ${formData.get(
+          "email"
+        )} como contato as ${new Date().toLocaleString("pt-BR")}`,
+      });
+    } else {
+      toast({
+        title: res.msg,
+        variant: "destructive",
+        description: `Sua mensagem não foi enviada!`,
+      });
+    }
+
     form.reset();
   }
 
@@ -105,7 +113,7 @@ export default function Contact() {
           )}
         />
         <Button className="w-20" type="submit">
-          Enviar
+          Enviar{" "}
         </Button>
       </form>
     </Form>

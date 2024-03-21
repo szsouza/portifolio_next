@@ -24,9 +24,10 @@ async function sendMessage(formData: FormData) {
       text: `Name: ${rawFormData.nome}\nEmail: ${rawFormData.email}\nMessage: ${rawFormData.mensagem}`,
     });
     console.log(rawFormData);
-    return;
+    return { success: true, msg: "Mensagem enviada!" };
   } catch (error) {
     console.error(error);
+    return { success: false, msg: "Erro interno!" };
   }
 }
 
